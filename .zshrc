@@ -74,6 +74,7 @@ alias えぃｔ=exit
 
 # Variables
 export EDITOR=vim
+export PATH="$HOME/bin:$PATH"
 
 # Hooks
 function chpwd() {
