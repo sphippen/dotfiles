@@ -94,4 +94,4 @@ function chpwd() {
   ls
 }
 
-[ -e "$HOME/.zshlocal"] && . "$HOME/.zshlocal"
+[ -e "$HOME/.zshlocal" ] && . "$HOME/.zshlocal"
