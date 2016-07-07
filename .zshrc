@@ -71,6 +71,7 @@ alias exeit=exit
 alias eixt=exit
 alias exti=exit
 alias えぃｔ=exit
+alias gdiff='git diff --no-index'
 
 # Variables
 export EDITOR=vim
