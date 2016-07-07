@@ -1,0 +1,31 @@
+[user]
+	name = Spencer Phippen
+	email = spencer.phippen@gmail.com
+[core]
+	autocrlf = false
+	safecrlf = true
+	excludesfile = ~/.gitignore
+	editor = vim
+[alias]
+  pulul = pull
+  pul = pull
+  puh = push
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	statsu = status
+  ad = add
+  b = branch
+  duff = diff --cached
+  dif = diff
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  idf = diff
+  upll = pull
+  udff = diff --cached
+  duf = diff --cached
+  mrge = merge
+  psh = push
+  feth = fetch
+[push]
+	default = nothing
