@@ -31,7 +31,7 @@ bindkey "^[[B" down-line-or-beginning-search
 
 function tmuxline() {
   if [ ! -z "$TMUX" ]; then
-    name="$(tmux display-message -p '#S:#W')"
+    name="$(tmux display-message -p '#{session_name}:#{session_windows}')"
     echo "%F{magenta}%B[%b%F{yellow}tmux<$name>%F{magenta}%B]%b"
   fi
 }
