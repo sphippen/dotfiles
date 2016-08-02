@@ -7,7 +7,7 @@ SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
 
 cd "$HOME"
 
-for file in .zshrc .gitconfig .vimrc; do
+for file in .zshrc .gitconfig .vimrc .tmux.conf; do
   rm -f "$file"
   ln -s "$SCRIPT_DIR"/"$file" ./"$file"
 done

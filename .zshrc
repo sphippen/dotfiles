@@ -31,17 +31,13 @@ bindkey "^[[B" down-line-or-beginning-search
 PROMPT="%F{magenta}%B[%b%F{cyan}%D{%y/%m/%d %T %Z(%z)}%F{magenta}%B][%b%F{yellow}%l%F{magenta}%B]%b
 %F{magenta}%B<%b%F{red}%n@%m%F{magenta}:%F{green}%U%~%u%F{magenta}%B>%b
 %F{magenta}%B[%b%(2L_%F{cyan}%LL%F{magenta}|_)%(1j_%F{green}%jj%F{magenta}|_)%F{yellow}%h%F{magenta}%B]%b %F{black}%B%#%b%f "
-RPROMPT="%(0?..%F{red}%B%?↩%f%b)"
+RPROMPT="%(0?..%F{red}%B%?<-%f%b)"
 
 # OS "Detection"
 if [ $(uname -s) = "Darwin" ]; then
   TYPE="Mac"
-  alias ls="ls -GlbhF"
-  alias la="ls -aGlbhF"
 elif [ $(uname -s) = "Linux" ]; then
   TYPE="Linux"
-  alias ls="LC_COLLATE=C ls -lbhF --color=auto"
-  alias la="LC_COLLATE=C ls -albhF --color=auto"
 else
   echo "Couldn't determine OS type."
 fi
@@ -95,4 +91,4 @@ function chpwd() {
   ls
 }
 
-[ -e "$HOME/.zshlocal" ] && . "$HOME/.zshlocal"
+[ ! -e "$HOME/.zshlocal" ] || . "$HOME/.zshlocal"
