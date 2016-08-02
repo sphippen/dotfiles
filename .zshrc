@@ -9,6 +9,7 @@ setopt extendedglob
 setopt nohup
 setopt zle
 setopt vi
+setopt promptsubst
 
 export HISTSIZE=99999
 export HISTFILE="$HOME/.zhistory"
@@ -28,10 +29,22 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-PROMPT="%F{magenta}%B[%b%F{cyan}%D{%y/%m/%d %T %Z(%z)}%F{magenta}%B][%b%F{yellow}%l%F{magenta}%B]%b
-%F{magenta}%B<%b%F{red}%n@%m%F{magenta}:%F{green}%U%~%u%F{magenta}%B>%b
-%F{magenta}%B[%b%(2L_%F{cyan}%LL%F{magenta}|_)%(1j_%F{green}%jj%F{magenta}|_)%F{yellow}%h%F{magenta}%B]%b %F{black}%B%#%b%f "
-RPROMPT="%(0?..%F{red}%B%?<-%f%b)"
+function tmuxline() {
+  if [ ! -z "$TMUX" ]; then
+    name="$(tmux display-message -p '#S:#W')"
+    echo "%F{magenta}%B[%b%F{yellow}tmux<$name>%F{magenta}%B]%b"
+  fi
+}
+
+pline1='%F{magenta}%B[%b%F{cyan}%D{%y/%m/%d %T %Z(%z)}%F{magenta}%B]%b$(tmuxline)'
+pline2='%F{magenta}%B<%b%F{red}%n@%m%F{magenta}:%F{green}%U%~%u%F{magenta}%B>%b'
+pline3='%F{magenta}%B[%b%(2L_%F{cyan}%LL%F{magenta}|_)%(1j_%F{green}%jj%F{magenta}|_)%F{yellow}%h%F{magenta}%B]%b %F{black}%B%#%b%f '
+
+PROMPT="$pline1
+$pline2
+$pline3"
+
+RPROMPT='%(0?..%F{red}%B%?<-%f%b)'
 
 # OS "Detection"
 if [ $(uname -s) = "Darwin" ]; then
