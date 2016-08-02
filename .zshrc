@@ -73,12 +73,10 @@ alias gdiff='git diff --no-index'
 export EDITOR=vim
 export PATH="$HOME/bin:$PATH"
 
-# Hooks
-function chpwd() {
+# Functions
+function cv() {
   emulate -L zsh
-  if [[ ! "$-" == *i* ]]; then
-    return
-  fi
+  cd "$@" || exit 1
 
   if [ -e "$HOME/.zshnols" ]; then
     while read line; do
