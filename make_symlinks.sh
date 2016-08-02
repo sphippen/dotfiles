@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
 
-set -e
-
 SCRIPT_PATH=$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)/$(basename -- "$0")")
 SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
 
-cd "$HOME"
-
-for file in .zshrc .gitconfig .vimrc .tmux.conf; do
-  rm -f "$file"
-  ln -s "$SCRIPT_DIR"/"$file" ./"$file"
+for file in .zshrc .gitconfig .vimrc; do
+  rm -f "$HOME/$file"
+  ln -s "$SCRIPT_DIR/$file" "$HOME/$file"
 done
 
-rm -f .gitignore
-ln -s "$SCRIPT_DIR"/.generic-gitignore ./.gitignore
+which tmux &>/dev/null && ( tmux -V | grep 'tmux 2' )
+
+if [ $? -eq 0 ]; then
+  TMUX_CONF=.tmux.2.conf
+else
+  TMUX_CONF=.tmux.conf
+fi
+
+rm -f "$HOME/.tmux.conf"
+ln -s "$SCRIPT_DIR/$TMUX_CONF" "$HOME/.tmux.conf"
+
+rm -f "$HOME/.gitignore"
+ln -s "$SCRIPT_DIR/.generic-gitignore" "$HOME/.gitignore"
