@@ -9,6 +9,9 @@ done
 
 ln -fs "$SCRIPT_DIR/.generic-gitignore" "$HOME/.gitignore"
 
+mkdir -p "$HOME/.config/fontconfig"
+ln -fs "$SCRIPT_DIR/fonts.conf" "$HOME/.config/fontconfig/fonts.conf"
+
 ##############
 # Tmux
 ##############
