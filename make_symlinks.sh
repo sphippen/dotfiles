@@ -4,12 +4,10 @@ SCRIPT_PATH=$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)/$(basena
 SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
 
 for file in .zshrc .gitconfig .vimrc; do
-  rm -f "$HOME/$file"
-  ln -s "$SCRIPT_DIR/$file" "$HOME/$file"
+  ln -fs "$SCRIPT_DIR/$file" "$HOME/$file"
 done
 
-rm -f "$HOME/.gitignore"
-ln -s "$SCRIPT_DIR/.generic-gitignore" "$HOME/.gitignore"
+ln -fs "$SCRIPT_DIR/.generic-gitignore" "$HOME/.gitignore"
 
 ##############
 # Tmux
@@ -22,8 +20,7 @@ else
   TMUX_CONF=.tmux.conf
 fi
 
-rm -f "$HOME/.tmux.conf"
-ln -s "$SCRIPT_DIR/$TMUX_CONF" "$HOME/.tmux.conf"
+ln -fs "$SCRIPT_DIR/$TMUX_CONF" "$HOME/.tmux.conf"
 
 ##############
 # Thunderbird
@@ -31,5 +28,5 @@ ln -s "$SCRIPT_DIR/$TMUX_CONF" "$HOME/.tmux.conf"
 for dir in "$HOME/.thunderbird/"*.default; do
   [ -d "$dir" ] || continue
   mkdir -p "$dir/chrome"
-  ln -s "$SCRIPT_DIR/userChrome.css" "$dir/chrome/userChrome.css"
+  ln -fs "$SCRIPT_DIR/userChrome.css" "$dir/chrome/userChrome.css"
 done
