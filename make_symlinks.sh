@@ -8,6 +8,12 @@ for file in .zshrc .gitconfig .vimrc; do
   ln -s "$SCRIPT_DIR/$file" "$HOME/$file"
 done
 
+rm -f "$HOME/.gitignore"
+ln -s "$SCRIPT_DIR/.generic-gitignore" "$HOME/.gitignore"
+
+##############
+# Tmux
+##############
 which tmux &>/dev/null && ( tmux -V | grep 'tmux 2' )
 
 if [ $? -eq 0 ]; then
@@ -19,5 +25,11 @@ fi
 rm -f "$HOME/.tmux.conf"
 ln -s "$SCRIPT_DIR/$TMUX_CONF" "$HOME/.tmux.conf"
 
-rm -f "$HOME/.gitignore"
-ln -s "$SCRIPT_DIR/.generic-gitignore" "$HOME/.gitignore"
+##############
+# Thunderbird
+##############
+for dir in "$HOME/.thunderbird/"*.default; do
+  [ -d "$dir" ] || continue
+  mkdir -p "$dir/chrome"
+  ln -s "$SCRIPT_DIR/userChrome.css" "$dir/chrome/userChrome.css"
+done
