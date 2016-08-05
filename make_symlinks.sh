@@ -33,3 +33,13 @@ for dir in "$HOME/.thunderbird/"*.default; do
   mkdir -p "$dir/chrome"
   ln -fs "$SCRIPT_DIR/userChrome.css" "$dir/chrome/userChrome.css"
 done
+
+##############
+# fcitx
+##############
+# -print because no spaces allowed...
+for f in $(find fcitx -type f -print); do
+  dest="$HOME/.config/$f"
+  mkdir -p "$(dirname "$dest")"
+  ln -fs "$SCRIPT_DIR/$f" "$dest"
+done
