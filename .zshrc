@@ -89,7 +89,7 @@ export PATH="$HOME/bin:$PATH"
 # Functions
 function cv() {
   emulate -L zsh
-  cd "$@" || exit 1
+  cd "$@" || return
 
   if [ -e "$HOME/.zshnols" ]; then
     while read line; do
