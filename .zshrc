@@ -86,10 +86,14 @@ alias gdiff='git diff --no-index'
 export EDITOR=vim
 export PATH="$HOME/bin:$PATH"
 
-# Functions
-function cv() {
+# Hooks
+export LSONCD=yes
+function chpwd() {
   emulate -L zsh
-  cd "$@" || return
+
+  if [ -z "$LSONCD" ]; then
+    return
+  fi
 
   if [ -e "$HOME/.zshnols" ]; then
     while read line; do
