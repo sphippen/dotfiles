@@ -106,4 +106,8 @@ function chpwd() {
   ls
 }
 
+# Rust PATH modifications
+[ ! -e "$HOME/.cargo/env" ] || . "$HOME/.cargo/env"
+
+# Machine-local stuff
 [ ! -e "$HOME/.zshlocal" ] || . "$HOME/.zshlocal"
