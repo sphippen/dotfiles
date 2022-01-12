@@ -30,10 +30,10 @@ ln -fs "$SCRIPT_DIR/.generic-gitignore" "$HOME/.gitignore"
 ####################
 # Tmux
 ####################
-which tmux &> /dev/null && ( tmux -V | grep 'tmux 2' &> /dev/null )
+which tmux &> /dev/null && ( tmux -V | grep 'tmux 1' &> /dev/null )
 
 if [ $? -eq 0 ]; then
-  TMUX_CONF=.tmux.2.conf
+  TMUX_CONF=.tmux.old.conf
 else
   TMUX_CONF=.tmux.conf
 fi
